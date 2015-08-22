@@ -29,7 +29,7 @@ build() {
     ${_arch}-configure \
       --prefix=/usr/${_arch} \
       --with-package-origin="http://www.archlinux.org/" \
-      --disable-unittests
+      --disable-unittests 
     make
     popd
   done
