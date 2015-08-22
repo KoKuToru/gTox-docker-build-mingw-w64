@@ -51,6 +51,10 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/ && makepkg -
 #install gst-plugins-base
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gst-plugins-base/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
+#fix stupid problem
+RUN cp /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/src/gstreamer-1.4.5/build-i686-w64-mingw32/pkgconfig/gstreamer-check.pc /usr/i686-w64-mingw32/lib/pkgconfig/
+RUN cp /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/src/gstreamer-1.4.5/build-x86_64-w64-mingw32/pkgconfig/gstreamer-check.pc /usr/x86_64-w64-mingw32/lib/pkgconfig/
+
 #bug fixing
 RUN rm -rf /tmp/gTox-docker-build-mingw-w64
 RUN echo "5"
@@ -62,6 +66,12 @@ RUN find / -iname "pkgconfig"
 RUN find / -iname "*.pc"
 
 RUN cat /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/src/gstreamer-1.4.5/build-x86_64-w64-mingw32/pkgconfig/gstreamer-check.pc
+
+RUN cp /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/src/gstreamer-1.4.5/build-i686-w64-mingw32/pkgconfig/gstreamer-check.pc /usr/i686-w64-mingw32/lib/pkgconfig/gstreamer-check-1.0.pc
+RUN cp /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/src/gstreamer-1.4.5/build-x86_64-w64-mingw32/pkgconfig/gstreamer-check.pc /usr/x86_64-w64-mingw32/lib/pkgconfig/gstreamer-check-1.0.pc
+
+RUN find / -iname "*gstcheck*"
+
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamermm/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
 #install flatbuffers
