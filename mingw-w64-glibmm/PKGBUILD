@@ -1,5 +1,5 @@
 pkgname=mingw-w64-glibmm
-pkgver=2.40.0
+pkgver=2.44.0
 pkgrel=1
 pkgdesc="Glib-- (glibmm) is a C++ interface for glib (mingw-w64)"
 arch=(any)

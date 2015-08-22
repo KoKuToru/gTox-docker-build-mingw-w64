@@ -31,7 +31,7 @@ build() {
     unset LDFLAGS CPPFLAGS
     mkdir -p "${srcdir}/${_gitname}/build-${_target}" && \
 	  cd "${srcdir}/${_gitname}/build-${_target}"
-    ${_arch}-configure
+    ${_target}-configure
     #../configure --prefix=/usr/${_target} \
                  #--host=${_target} \
 		 #--enable-shared \

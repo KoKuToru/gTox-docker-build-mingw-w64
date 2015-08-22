@@ -1,0 +1,38 @@
+pkgname=mingw-w64-flatbuffers
+pkgver=1.1.0
+pkgrel=1
+pkgdesc="An efficient cross platform serialization library for C++, with support for Java, C# and Go"
+arch=(any)
+url="http://google.github.io/flatbuffers/"
+license=('Apache')
+depends=()
+makedepends=(mingw-w64-cmake)
+optdepends=('go' 'java-environment' 'mono')
+source=(https://github.com/google/flatbuffers/archive/v$pkgver.tar.gz)
+md5sums=('a469b3058e53a12d49556e8e1bb5edea')
+_targets="i686-w64-mingw32 x86_64-w64-mingw32"
+
+build() {
+	cd "$srcdir/$pkgname-$pkgver"
+	for _arch in ${_architectures}; do
+	    mkdir -p "${srcdir}/${pkgname}-${pkgver}-build-${_arch}"
+	    cd "${srcdir}/${pkgname}-${pkgver}-build-${_arch}"
+	    ${_arch}-cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr/${_arch}
+	    make 
+	done
+}
+
+check() {
+	#cd "$srcdir/$pkgname-$pkgver"
+	#make test
+}
+
+package() {
+  for _arch in ${_architectures}; do
+    cd "${srcdir}/${pkgname}-${pkgver}-build-${_arch}"
+    make DESTDIR="$pkgdir" install
+    find "$pkgdir/usr/${_arch}" -name '*.exe' -o -name '*.bat' -o -name '*.def' -o -name '*.exp' | xargs -rtl1 rm
+    find "$pkgdir/usr/${_arch}" -name '*.dll' | xargs -rtl1 ${_arch}-strip --strip-unneeded
+    find "$pkgdir/usr/${_arch}" -name '*.a' -o -name '*.dll' | xargs -rtl1 ${_arch}-strip -g
+  done
+}
