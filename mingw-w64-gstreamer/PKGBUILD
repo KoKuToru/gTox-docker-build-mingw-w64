@@ -26,12 +26,13 @@ build() {
   
   for _arch in ${_architectures}; do
     mkdir -p build-${_arch} && pushd build-${_arch}
-    export PKG_CONFIG_PATH=/usr/${_arch}/lib/pkgconfig/
     ${_arch}-configure \
       --prefix=/usr/${_arch} \
+      --libexecdir=/usr/${_arch}/lib \
       --with-package-origin="http://www.archlinux.org/" \
       --disable-examples --disable-benchmarks \
       --disable-tests
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
     make
     popd
   done

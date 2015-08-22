@@ -43,7 +43,7 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-tox-git/ && makepkg -si
 
 #bug fixing
 RUN rm -rf /tmp/gTox-docker-build-mingw-w64
-RUN echo "1"
+RUN echo "2"
 RUN cd /tmp && su -c "git clone https://github.com/KoKuToru/gTox-docker-build-mingw-w64.git" -s /bin/bash nobody
 #install gstreamer
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
@@ -51,9 +51,17 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/ && makepkg -
 #install gst-plugins-base
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gst-plugins-base/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
+#bug fixing
+RUN rm -rf /tmp/gTox-docker-build-mingw-w64
+RUN echo "3"
+RUN cd /tmp && su -c "git clone https://github.com/KoKuToru/gTox-docker-build-mingw-w64.git" -s /bin/bash nobody
+#RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
+
 #install gstreamermm
 RUN find / -iname "pkgconfig"
-RUn cat /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/src/gstreamer-1.4.5/build-x86_64-w64-mingw32/pkgconfig/gstreamer-check.pc
+RUN find / -iname "*.pc"
+RUN exit 10
+RUN cat /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/src/gstreamer-1.4.5/build-x86_64-w64-mingw32/pkgconfig/gstreamer-check.pc
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamermm/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
 #install flatbuffers
