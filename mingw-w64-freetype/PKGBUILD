@@ -1,0 +1,19 @@
+pkgrel=1
+pkgver=1
+pkgname=('mingw-w64-freetype')
+pkgdesc="Dummy package for mingw-w64-glib2"
+license='GPL3'
+arch=(any)
+depends=(mingw-w64-freetype2)
+
+prepare() {
+    echo "DUMMY PACKAGE !"
+}
+
+build() {
+    echo "DUMMY PACKAGE !"
+}
+
+package() {
+    echo "DUMMY PACKAGE !"
+}
