@@ -53,7 +53,7 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gst-plugins-base/ && ma
 
 #bug fixing
 RUN rm -rf /tmp/gTox-docker-build-mingw-w64
-RUN echo "4"
+RUN echo "5"
 RUN cd /tmp && su -c "git clone https://github.com/KoKuToru/gTox-docker-build-mingw-w64.git" -s /bin/bash nobody
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
