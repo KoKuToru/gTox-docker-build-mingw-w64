@@ -48,6 +48,7 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/ && makepkg -
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gst-plugins-base/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
 #install gstreamermm
+RUN find / -iname pkgconfig
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamermm/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
 #install flatbuffers
