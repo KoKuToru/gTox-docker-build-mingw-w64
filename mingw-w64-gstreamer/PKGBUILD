@@ -32,7 +32,7 @@ build() {
       --with-package-origin="http://www.archlinux.org/" \
       --disable-examples --disable-benchmarks \
       --disable-tests \
-      --disable-check=false
+      --enable-check
     sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
     make
     popd

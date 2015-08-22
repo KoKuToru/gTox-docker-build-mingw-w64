@@ -49,7 +49,7 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-flatbuffers/ && makepkg
 
 
 #GSTREAMER IS KILLING ME
-RUN echo "3"
+RUN echo "4"
 RUN rm -rf /tmp/gTox-docker-build-mingw-w64
 RUN cd /tmp && su -c "git clone https://github.com/KoKuToru/gTox-docker-build-mingw-w64.git" -s /bin/bash nobody
 
