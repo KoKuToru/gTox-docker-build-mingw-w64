@@ -1,5 +1,5 @@
-kgname=mingw-w64-gst-plugins-base
-pkgver=1.4.2
+pkgname=mingw-w64-gst-plugins-base
+pkgver=1.4.3
 pkgrel=1
 pkgdesc="GStreamer Multimedia Framework Base Plugins (mingw-w64)"
 arch=(any)

@@ -16,9 +16,10 @@ build() {
 	cd "$srcdir/$pkgname-$pkgver"
 	for _arch in ${_architectures}; do
 	    mkdir -p "${srcdir}/${pkgname}-${pkgver}-build-${_arch}"
-	    cd "${srcdir}/${pkgname}-${pkgver}-build-${_arch}"
+	    pushd "${srcdir}/${pkgname}-${pkgver}-build-${_arch}"
 	    ${_arch}-cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr/${_arch}
 	    make 
+	    popd
 	done
 }
 
