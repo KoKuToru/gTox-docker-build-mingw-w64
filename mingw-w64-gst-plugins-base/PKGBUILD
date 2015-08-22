@@ -33,6 +33,7 @@ build() {
       --host=${_arch} --build="$CHOST" \
       --with-package-origin="http://www.archlinux.org/" \
       --enable-static --enable-shared \
+      --enable-experimental \
       --disable-examples --disable-freetypetest \
       --disable-x --disable-xvideo --disable-xshm --disable-alsa
     make
