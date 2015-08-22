@@ -64,5 +64,5 @@ RUN pacman -R --noconfirm mingw-w64-gtkmm3
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamermm/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
 #install gtkmm3, must be done after gstreamermm !, or it will try to compile buggy windows examples
-#as far I can tell.. there is no way to disable exampels in gstreamermms build script
+#as far I can tell.. there is no way to disable examples in gstreamermms build script
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gtkmm3/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
