@@ -26,6 +26,7 @@ build() {
   
   for _arch in ${_architectures}; do
     mkdir -p build-${_arch} && pushd build-${_arch}
+    export PKG_CONFIG_PATH=/usr/${_arch}/lib/pkgconfig/
     ${_arch}-configure \
       --prefix=/usr/${_arch} \
       --with-package-origin="http://www.archlinux.org/" \
