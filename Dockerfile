@@ -32,9 +32,6 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-cairomm/ && makepkg -si
 #install pangomm
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-pangomm/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
-#install gtkmm3
-RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gtkmm3/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
-
 #install libsodium
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-libsodium/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
@@ -44,15 +41,6 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-tox-git/ && makepkg -si
 #install flatbuffers
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-flatbuffers/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
-
-
-
-
-#GSTREAMER IS KILLING ME
-RUN echo "5"
-RUN rm -rf /tmp/gTox-docker-build-mingw-w64
-RUN cd /tmp && su -c "git clone https://github.com/KoKuToru/gTox-docker-build-mingw-w64.git" -s /bin/bash nobody
-
 #install gstreamer
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
@@ -60,8 +48,6 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/ && makepkg -
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gst-plugins-base/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
 #install gstreamermm
-RUN pacman -R --noconfirm mingw-w64-gtkmm3
-RUN cd /tmp && rm -rf gTox-docker-build-mingw-w64 && su -c "git clone https://github.com/KoKuToru/gTox-docker-build-mingw-w64.git" -s /bin/bash nobody
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamermm/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
 #install gtkmm3, must be done after gstreamermm !, or it will try to compile buggy windows examples
