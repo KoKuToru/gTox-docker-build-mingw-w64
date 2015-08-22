@@ -47,6 +47,8 @@ package() {
     rm $pkgdir/usr/$_arch/lib/gstreamer-1.0/*.a
     rm $pkgdir/usr/$_arch/lib/gstreamer-1.0/*.la
     
+    find "$pkgdir" -name '*.pc' -exec cp {} $pkgdir/usr/$_arch/lib/pkgconfig/ \
+    
     find "$pkgdir" -name '*.dll' -exec ${_arch}-strip --strip-unneeded {} \;
     find "$pkgdir" -name '*.dll' -o -name '*.a' -exec ${_arch}-strip -g {} \;
   done
