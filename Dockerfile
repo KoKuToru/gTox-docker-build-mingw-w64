@@ -41,22 +41,23 @@ RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-libsodium/ && makepkg -
 #install tox-git
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-tox-git/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
-#bug fixing
+#install flatbuffers
+RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-flatbuffers/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
+
+
+
+
+
+#GSTREAMER IS KILLING ME
+echo "0"
 RUN rm -rf /tmp/gTox-docker-build-mingw-w64
-RUN echo "2"
 RUN cd /tmp && su -c "git clone https://github.com/KoKuToru/gTox-docker-build-mingw-w64.git" -s /bin/bash nobody
+
 #install gstreamer
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamer/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
-
-#bug fixing
-RUN rm -rf /tmp/gTox-docker-build-mingw-w64
-RUN cd /tmp && su -c "git clone https://github.com/KoKuToru/gTox-docker-build-mingw-w64.git" -s /bin/bash nobody
-
-#install gstreamermm
-RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamermm/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
 #install gst-plugins-base
 RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gst-plugins-base/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
 
-#install flatbuffers
-RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-flatbuffers/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody
+#install gstreamermm
+RUN su -c "cd /tmp/gTox-docker-build-mingw-w64/mingw-w64-gstreamermm/ && makepkg -si --noconfirm --skipchecksums --skippgpcheck" -s /bin/bash nobody

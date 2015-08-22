@@ -31,7 +31,7 @@ build() {
       --libdir=/usr/${_arch}/lib \
       --with-package-origin="http://www.archlinux.org/" \
       --disable-examples --disable-benchmarks \
-      --disable-tests
+     #--disable-tests
     sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
     make
     popd
