@@ -7,17 +7,19 @@ url="http://google.github.io/flatbuffers/"
 license=('Apache')
 depends=()
 makedepends=(mingw-w64-cmake)
+options=('!strip' '!buildflags' 'staticlibs')
 optdepends=('go' 'java-environment' 'mono')
 source=(https://github.com/google/flatbuffers/archive/v$pkgver.tar.gz)
 md5sums=('a469b3058e53a12d49556e8e1bb5edea')
-_targets="i686-w64-mingw32 x86_64-w64-mingw32"
+_architectures="i686-w64-mingw32 x86_64-w64-mingw32"
 
 build() {
 	cd "$srcdir/flatbuffers-$pkgver"
 	for _arch in ${_architectures}; do
-	    mkdir -p "${srcdir}/${pkgname}-${pkgver}-build-${_arch}"
-	    pushd "${srcdir}/${pkgname}-${pkgver}-build-${_arch}"
-	    ${_arch}-cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr/${_arch}
+	    mkdir -p "${srcdir}/flatbuffers-${pkgver}-build-${_arch}"
+	    pushd "${srcdir}/flatbuffers-${pkgver}-build-${_arch}"
+	    unset LD_FLAGS
+	    ${_arch}-cmake -DCMAKE_INSTALL_PREFIX=/usr/${_arch} ${srcdir}/flatbuffers-${pkgver}
 	    make 
 	    popd
 	done
@@ -25,7 +27,7 @@ build() {
 
 package() {
   for _arch in ${_architectures}; do
-    cd "${srcdir}/${pkgname}-${pkgver}-build-${_arch}"
+    cd "${srcdir}/flatbuffers-${pkgver}-build-${_arch}"
     make DESTDIR="$pkgdir" install
     find "$pkgdir/usr/${_arch}" -name '*.exe' -o -name '*.bat' -o -name '*.def' -o -name '*.exp' | xargs -rtl1 rm
     find "$pkgdir/usr/${_arch}" -name '*.dll' | xargs -rtl1 ${_arch}-strip --strip-unneeded
