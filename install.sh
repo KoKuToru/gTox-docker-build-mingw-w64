@@ -37,7 +37,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 #install
-for pkg in glibmm atkmm cairomm pangomm libsodium tox-git flatbuffers gstreamer gst-plugins-base gstreamermm gtkmm3
+for pkg in glibmm atkmm cairomm pangomm libsodium tox-git flatbuffers gstreamer gst-plugins-base gstreamermm gtkmm3 libcroco librsvg
 do
 	cd $ROOT/mingw-w64-$pkg/ \
 	&& makepkg -si --noconfirm --skipchecksums --skippgpcheck
