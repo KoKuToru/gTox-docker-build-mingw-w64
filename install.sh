@@ -30,6 +30,7 @@ mingw-w64-opus \
 mingw-w64-libvpx \
 mingw-w64-libvorbis \
 mingw-w64-libtheora \
+mingw-w64-gdk-pixbuf2 \
 flatbuffers
 if [[ $? -ne 0 ]]; then
     exit 1
