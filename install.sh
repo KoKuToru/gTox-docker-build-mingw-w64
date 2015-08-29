@@ -46,3 +46,6 @@ do
         exit 1
     fi
 done
+
+#clean-up
+(echo "y"; echo "y") | pacman -Scc
