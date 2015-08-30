@@ -39,9 +39,13 @@ fi
 #install
 for pkg in glibmm atkmm cairomm pangomm libsodium tox-git flatbuffers gstreamer gst-plugins-base gstreamermm gtkmm3 libcroco librsvg gdk-pixbuf2
 do
-	cd $ROOT/mingw-w64-$pkg/ \
-	&& makepkg -si --noconfirm --skipchecksums --skippgpcheck
+    cd $ROOT/mingw-w64-$pkg/ \
+    && makepkg -si --noconfirm --skipchecksums --skippgpcheck
+    
     if [[ $? -ne 0 ]]; then
         exit 1
     fi
 done
+
+#clean-up
+(echo "y"; echo "y") | pacman -Scc
